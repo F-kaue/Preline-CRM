@@ -1,0 +1,10 @@
+{
+  "name": "preline-crm",
+  "private": true,
+  "description": "Monorepo: aplicação Next.js em web/. A Vercel usa os comandos em vercel.json.",
+  "scripts": {
+    "build": "npm run build --prefix web",
+    "dev": "npm run dev --prefix web",
+    "lint": "npm run lint --prefix web"
+  }
+}

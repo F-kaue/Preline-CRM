@@ -6,7 +6,7 @@ import { createWorkspace } from "@/app/actions/workspace";
 
 export function OnboardingForm() {
   const router = useRouter();
-  const [name, setName] = useState("Minha equipe comercial");
+  const [name, setName] = useState("");
   const [err, setErr] = useState<string | null>(null);
   const [pending, start] = useTransition();
 

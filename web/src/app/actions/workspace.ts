@@ -42,21 +42,21 @@ export async function createWorkspace(name: string) {
   const trimmed = name.trim();
   if (!trimmed) return { ok: false as const, error: "Nome obrigatório" };
 
-  const { data, error } = await supabase
-    .from("workspaces")
-    .insert({ name: trimmed, created_by: user.id })
-    .select("id")
-    .single();
+  const { data: workspaceId, error } = await supabase.rpc("create_workspace", {
+    p_name: trimmed,
+  });
 
-  if (error) return { ok: false as const, error: error.message };
+  if (error || workspaceId == null) {
+    return { ok: false as const, error: error?.message ?? "Erro ao criar workspace" };
+  }
 
   const jar = await cookies();
-  jar.set(workspaceCookieName(), data.id, {
+  jar.set(workspaceCookieName(), workspaceId, {
     path: "/",
     maxAge: 60 * 60 * 24 * 365,
     sameSite: "lax",
     httpOnly: true,
   });
   revalidatePath("/", "layout");
-  return { ok: true as const, workspaceId: data.id as string };
+  return { ok: true as const, workspaceId: workspaceId as string };
 }

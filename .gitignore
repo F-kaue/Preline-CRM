@@ -1,6 +1,5 @@
 node_modules
 web/node_modules
-.next
 web/.next
 web/.env.local
 web/out

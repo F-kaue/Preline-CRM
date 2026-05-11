@@ -1,0 +1,17 @@
+{
+  "/auth/signout/route": "/auth/signout",
+  "/favicon.ico/route": "/favicon.ico",
+  "/_not-found/page": "/_not-found",
+  "/login/page": "/login",
+  "/page": "/",
+  "/register/page": "/register",
+  "/(main)/campaigns/[id]/page": "/campaigns/[id]",
+  "/(main)/campaigns/new/page": "/campaigns/new",
+  "/(main)/campaigns/page": "/campaigns",
+  "/(main)/dashboard/page": "/dashboard",
+  "/(main)/leads/[id]/page": "/leads/[id]",
+  "/(main)/leads/new/page": "/leads/new",
+  "/(main)/leads/page": "/leads",
+  "/(main)/settings/page": "/settings",
+  "/onboarding/page": "/onboarding"
+}

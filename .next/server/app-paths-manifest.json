@@ -1,0 +1,17 @@
+{
+  "/auth/signout/route": "app/auth/signout/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/register/page": "app/register/page.js",
+  "/(main)/campaigns/[id]/page": "app/(main)/campaigns/[id]/page.js",
+  "/(main)/campaigns/new/page": "app/(main)/campaigns/new/page.js",
+  "/(main)/campaigns/page": "app/(main)/campaigns/page.js",
+  "/(main)/dashboard/page": "app/(main)/dashboard/page.js",
+  "/(main)/leads/[id]/page": "app/(main)/leads/[id]/page.js",
+  "/(main)/leads/new/page": "app/(main)/leads/new/page.js",
+  "/(main)/leads/page": "app/(main)/leads/page.js",
+  "/(main)/settings/page": "app/(main)/settings/page.js",
+  "/onboarding/page": "app/onboarding/page.js"
+}

@@ -23,7 +23,7 @@ Projeto **preline-crm** na equipe **f-kaues-projects**.
 - **URL principal (domínio Vercel):** [https://preline-crm.vercel.app](https://preline-crm.vercel.app)
 - **Redirect / legado:** `https://web-bice-sigma-91.vercel.app` continua nas URLs permitidas do Supabase para não quebrar links antigos.
 - **Variáveis em Production:** `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-- **Root Directory do projeto:** deixe na **raiz do repositório** (campo vazio ou `.`). O `vercel.json` instala e faz build com `web/` via `npm ci --prefix web`. Se no painel estiver `web`, altere para a raiz — senão o deploy tenta `web/web` e falha.
+- **Root Directory do projeto:** **raiz do repositório** (vazio ou `.`). O `vercel.json` faz `cd web && npm ci` e `cd web && npm run build`. Com `VERCEL=1`, o Next grava `.next` na raiz para o runtime encontrar o build. Se no painel estiver só `web`, apague ou deixe `.` — senão comandos duplicam caminho.
 
 **Supabase Auth:** `site_url` e redirect URLs apontam para **preline-crm.vercel.app** e localhost. O login é **manual** (sem pré-preenchimento ou auto-login).
 

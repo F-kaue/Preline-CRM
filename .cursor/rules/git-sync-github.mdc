@@ -1,0 +1,17 @@
+---
+description: Após alterações no código, versionar e enviar ao GitHub automaticamente.
+alwaysApply: true
+---
+
+# Sincronização com GitHub (Preline / este repositório)
+
+Quando você **alterar, criar ou remover** arquivos do projeto como parte de uma tarefa:
+
+1. **Confira o estado**: `git status` na raiz do repositório (`Prova Pratica - Vaga VibeCodign`).
+2. **Inclua as mudanças**: `git add` apenas os arquivos relevantes à tarefa (evite `git add` de segredos: `.env`, `.env.local`, chaves, tokens).
+3. **Commit**: mensagem clara em português ou inglês, no imperativo (ex.: `fix: RLS ao criar workspace com returning`).
+4. **Push**: `git push origin main` (ou a branch em uso). Se o remoto rejeitar, integre com `git pull --rebase origin main` ou resolva conflitos antes de novo push.
+
+**Não** commite: `node_modules`, `.next`, credenciais, ou `.vercel` com dados sensíveis se o `.gitignore` não os ignorar — mantenha o `.gitignore` correto.
+
+Se o usuário pedir explicitamente para **não** fazer push (ex.: WIP local), respeite.

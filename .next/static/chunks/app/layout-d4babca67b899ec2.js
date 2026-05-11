@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[177],{1972:(a,s,e)=>{Promise.resolve().then(e.t.bind(e,9357,23)),Promise.resolve().then(e.t.bind(e,5263,23))},5263:()=>{},9357:a=>{a.exports={style:{fontFamily:"'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback'",fontStyle:"normal"},className:"__className_646807"}}},a=>{a.O(0,[20,347,131,358],()=>a(a.s=1972)),_N_E=a.O()}]);

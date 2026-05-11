@@ -13,6 +13,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { createClient } from "@/lib/supabase/client";
+import { formatFunctionsInvokeError } from "@/lib/edge-function-error";
 
 type Stage = {
   id: string;
@@ -163,9 +164,7 @@ export function LeadsBoard({
               { body: { leadId, mode: "triggers" } },
             );
             if (fnErr) {
-              setMsg(
-                `Lead movido. Geração automática: ${fnErr.message} (verifique o segredo GEMINI_API_KEY).`,
-              );
+              setMsg(`Lead movido. Geração automática: ${await formatFunctionsInvokeError(fnErr)}`);
             }
             router.refresh();
           });

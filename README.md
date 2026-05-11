@@ -52,10 +52,12 @@ Projeto **preline-crm** na equipe **f-kaues-projects**.
 
 4. **Gemini na Edge Function** (obrigatório para IA):
 
+   Código fonte da função: `supabase/functions/generate-lead-messages/index.ts` (deploy com Supabase CLI ou painel).
+
    No painel Supabase: **Project Settings → Edge Functions → Secrets** adicione:
 
    - `GEMINI_API_KEY` — obtida em [Google AI Studio](https://aistudio.google.com/apikey) (API key do Gemini).
-   - (Opcional) `GEMINI_MODEL` — padrão na função: `gemini-2.0-flash`.
+   - (Opcional) `GEMINI_MODEL` — na Edge Function o padrão é **`gemini-2.5-flash`** (o `gemini-2.0-flash` está deprecated na API Google e pode devolver erro). Podes fixar explicitamente este segredo para evitar surpresas quando a Google desligar aliases antigos.
 
    Sem esse segredo, mover lead / gerar mensagem retornará erro claro na UI.
 

@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { formatFunctionsInvokeError } from "@/lib/edge-function-error";
 
 type CF = { id: string; label: string; field_key: string };
 
@@ -158,9 +159,12 @@ export function NewLeadForm({
             metadata: {},
           });
 
-          await supabase.functions.invoke("generate-lead-messages", {
+          const { error: fnErr } = await supabase.functions.invoke("generate-lead-messages", {
             body: { leadId, mode: "triggers" },
           });
+          if (fnErr) {
+            sessionStorage.setItem("preline_fn_warn", await formatFunctionsInvokeError(fnErr));
+          }
 
           router.replace(`/leads/${leadId}`);
           router.refresh();

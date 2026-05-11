@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { formatFunctionsInvokeError } from "@/lib/edge-function-error";
 
 type Lead = {
   id: string;
@@ -67,6 +68,14 @@ export function LeadDetailPanel({
     setSuggestions(initialSuggestions);
     setActivities(initialActivities);
   }, [initial, initialCf, initialSuggestions, initialActivities]);
+
+  useEffect(() => {
+    const w = sessionStorage.getItem("preline_fn_warn");
+    if (w) {
+      setMsg(w);
+      sessionStorage.removeItem("preline_fn_warn");
+    }
+  }, []);
 
   const grouped = useMemo(() => {
     const m = new Map<string, Suggestion[]>();
@@ -150,7 +159,7 @@ export function LeadDetailPanel({
         "generate-lead-messages",
         { body: { leadId: lead.id, mode: "triggers" } },
       );
-      if (fnErr) setMsg(`Movido. IA: ${fnErr.message}`);
+      if (fnErr) setMsg(`Movido. IA: ${await formatFunctionsInvokeError(fnErr)}`);
       else if (fnData && typeof fnData === "object" && "results" in fnData) {
         setMsg("Etapa atualizada. Sugestões geradas se houver gatilho.");
       }
@@ -170,7 +179,7 @@ export function LeadDetailPanel({
         body: { leadId: lead.id, campaignId, mode: "manual" },
       });
       if (error) {
-        setMsg(error.message);
+        setMsg(await formatFunctionsInvokeError(error));
         return;
       }
       const results = (data as { results?: { messages: string[]; campaignId: string }[] })
@@ -192,8 +201,10 @@ export function LeadDetailPanel({
           });
         }
         setSuggestions((prev) => [...added, ...prev]);
+        setMsg("Novas sugestões geradas.");
+      } else {
+        setMsg("Nenhuma sugestão retornada (verifique a campanha e tente de novo).");
       }
-      setMsg("Novas sugestões geradas.");
       router.refresh();
     });
   }

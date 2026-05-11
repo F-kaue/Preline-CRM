@@ -23,10 +23,9 @@ Projeto **preline-crm** na equipe **f-kaues-projects**.
 - **URL principal (domínio Vercel):** [https://preline-crm.vercel.app](https://preline-crm.vercel.app)
 - **Redirect / legado:** `https://web-bice-sigma-91.vercel.app` continua nas URLs permitidas do Supabase para não quebrar links antigos.
 - **Variáveis em Production:** `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-- **Monorepo (`web/`):** escolha **uma** das opções no projeto Vercel:
-  - **A)** **Root Directory = `web`** (recomendado): deixe **sem** `vercel.json` na raiz (podes apagar o ficheiro se usares só esta opção), ou mantém o `vercel.json` **apenas** se o painel estiver com raiz vazia.
-  - **B)** **Root Directory vazio** (raiz do repo): o **`vercel.json`** na raiz faz `cd web && npm ci` e `npm run build`; o Next grava `.next` na raiz quando `VERCEL=1` (`distDir` em `web/next.config.ts`).
-- Se os deploys falharem após mudanças, em **Deployments** usa **Redeploy → Clear build cache** (o cache antigo às vezes traz `package.json` errado na raiz).
+- **Root Directory (obrigatório para Git):** em **Settings → General → Root Directory** define **`web`** e guarda. O repositório é monorepo: sem isto o build corre na raiz e o Next diz *Couldn't find any `pages` or `app` directory*. Não uses `vercel.json` na raiz com `cd web` — isso quebra o build (output `.next` no sítio errado).
+- Após mudar o Root Directory, faz **Deployments → … no último deploy → Redeploy** e marca **Clear build cache** (o cache antigo do deploy CLI ainda puxa `vercel-build` / estrutura errada).
+- **403** em URLs `*.vercel.app` de um deploy: em **Settings → Deployment Protection** desativa proteção para *Production* (ou acede ao domínio de produção **preline-crm.vercel.app** autenticado). O *preview* pode exigir login na equipa.
 
 **Supabase Auth:** `site_url` e redirect URLs apontam para **preline-crm.vercel.app** e localhost. O login é **manual** (sem pré-preenchimento ou auto-login).
 

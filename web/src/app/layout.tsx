@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="light" suppressHydrationWarning>
       <body className={`${jakarta.className} antialiased`}>{children}</body>
     </html>
   );

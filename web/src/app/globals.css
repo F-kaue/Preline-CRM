@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Só aplica utilitários `dark:` se existir `.dark` no HTML (não usa prefers-color-scheme).
+   Evita formulários “tudo preto” com texto escuro herdado quando o SO está em dark mode. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
@@ -18,6 +22,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
+}
+
+html {
+  color-scheme: light;
 }
 
 body {

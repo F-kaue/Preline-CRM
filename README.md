@@ -23,7 +23,7 @@ Projeto **preline-crm** na equipe **f-kaues-projects**.
 - **URL principal (domínio Vercel):** [https://preline-crm.vercel.app](https://preline-crm.vercel.app)
 - **Redirect / legado:** `https://web-bice-sigma-91.vercel.app` continua nas URLs permitidas do Supabase para não quebrar links antigos.
 - **Variáveis em Production:** `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-- **Root Directory (obrigatório para Git):** em **Settings → General → Root Directory** define **`web`** e guarda. O repositório é monorepo: sem isto o build corre na raiz e o Next diz *Couldn't find any `pages` or `app` directory*. Não uses `vercel.json` na raiz com `cd web` — isso quebra o build (output `.next` no sítio errado).
+- **Root Directory (obrigatório para Git):** em **Settings → Build and Deployment** (na barra lateral do projeto, não em “General”) procura **Root Directory**, define **`web`** e guarda. Na UI recente da Vercel esta opção saiu de “General” e ficou nesta secção. O repositório é monorepo: sem isto o build corre na raiz e o Next diz *Couldn't find any `pages` or `app` directory*. Não uses `vercel.json` na raiz com `cd web` — isso quebra o build (output `.next` no sítio errado).
 - Após mudar o Root Directory, faz **Deployments → … no último deploy → Redeploy** e marca **Clear build cache** (o cache antigo do deploy CLI ainda puxa `vercel-build` / estrutura errada).
 - **403** em URLs `*.vercel.app` de um deploy: em **Settings → Deployment Protection** desativa proteção para *Production* (ou acede ao domínio de produção **preline-crm.vercel.app** autenticado). O *preview* pode exigir login na equipa.
 

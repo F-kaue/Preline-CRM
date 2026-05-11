@@ -13,7 +13,7 @@ export default async function NewLeadPage() {
 
   const { data: stage } = await supabase
     .from("pipeline_stages")
-    .select("id")
+    .select("id,name,stage_key")
     .eq("workspace_id", ws)
     .eq("stage_key", "base")
     .single();
@@ -29,16 +29,25 @@ export default async function NewLeadPage() {
   }
 
   return (
-    <div className="mx-auto max-w-lg space-y-6">
+    <div className="mx-auto max-w-3xl space-y-8 pb-12">
       <div>
-        <Link href="/leads" className="text-sm text-zinc-600 hover:underline dark:text-zinc-400">
-          ← Voltar
+        <Link
+          href="/leads"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition hover:text-blue-600"
+        >
+          <span aria-hidden>←</span> Voltar aos leads
         </Link>
-        <h1 className="mt-2 text-2xl font-semibold">Novo lead</h1>
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900">Novo lead</h1>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+          Cadastre a pessoa e o contexto comercial. Ao salvar, o lead entra na etapa{" "}
+          <span className="font-medium text-slate-800">{stage.name as string}</span> do funil e a IA
+          pode gerar sugestões de mensagem com base nos dados e gatilhos do workspace.
+        </p>
       </div>
       <NewLeadForm
         workspaceId={ws}
         defaultStageId={stage.id as string}
+        defaultStageName={(stage.name as string) ?? "Base"}
         customFields={
           (fields ?? []).map((f) => ({
             id: f.id as string,
